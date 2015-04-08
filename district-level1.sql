@@ -1,10 +1,10 @@
 
 SELECT 
-    d.name, t.*,CONCAT('{name:"',d.name,'",areaCodes:[',t.a,']}') dat
+    CONCAT('{name:"',d.name,'",areaCodes:[',t.a,']}') dat
 FROM
     district d,
     (SELECT 
-        parentid, GROUP_CONCAT(distinct area_Code) a
+        parentid, GROUP_CONCAT(distinct CONCAT('"',area_Code,'"')) a
     FROM
         mirror.district
     WHERE
